@@ -14,6 +14,15 @@ return new class extends Migration
         Schema::create('atividades', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+
+            $table->string('name');
+            $table->string('status');
+            $table->date('data');
+
+            //$table->unsignedBigInteger('user_id');
+            //$table->foreign('user_id')->references('id')->on('users');
+
+            $table->foreignId('user_id')->constrained('users');
         });
     }
 

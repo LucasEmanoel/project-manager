@@ -5,9 +5,9 @@
 
 <header class="bg-blue-500 text-white p-4 shadow-md">
     <div class="container mx-auto flex justify-between items-center">
-        <h1 class="text-2xl font-bold">Lista de Atividades</h1>
-        <a href="{{ route('atividade.create') }}" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md">
-            Cadastrar Atividade
+        <h1 class="text-2xl font-bold">Lista de tarefas</h1>
+        <a href="{{ route('tarefa.create') }}" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md">
+            Cadastrar tarefa
         </a>
     </div>
 </header>
@@ -16,28 +16,28 @@
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
-                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Atividade</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tarefa</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Visualizar</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Editar</th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Deletar</th>
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-                @foreach($atividades as $atividade)
+                @foreach($tarefas as $tarefa)
                 <tr>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $atividade->name }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $tarefa->name }}</td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 hover:text-blue-800">
-                        <a href="{{ route('atividade.show', ['id' => $atividade->id]) }}">
+                        <a href="{{ route('tarefa.show', ['id' => $tarefa->id]) }}">
                             <i class="fas fa-eye"></i>
                         </a>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 hover:text-blue-800">
-                        <a href="{{ route('atividade.edit', ['id' => $atividade->id]) }}">
+                        <a href="{{ route('tarefa.edit', ['id' => $tarefa->id]) }}">
                             <i class="fas fa-pencil-alt"></i>
                         </a>
                     </td>
                     <td class="px-6 py-4 whitespace-nowrap text-sm text-red-600 hover:text-red-800">
-                        <form action="{{ route('atividade.remove', ['id' => $atividade->id]) }}" method="POST" onsubmit="return confirm('Você tem certeza que deseja excluir?');">
+                        <form action="{{ route('tarefa.remove', ['id' => $tarefa->id]) }}" method="POST" onsubmit="return confirm('Você tem certeza que deseja excluir?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-red-600 hover:text-red-800">

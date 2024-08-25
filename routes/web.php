@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\AtividadeController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TarefaController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\IssueController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -19,20 +20,20 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/atividades', [AtividadeController::class, 'index'])->name('atividade.index');
-Route::get('/atividade/{id}', [AtividadeController::class, 'show'])->name('atividade.show');
-Route::get('/atividades/cadastrar', [AtividadeController::class, 'create'])->name('atividade.create');
-Route::get('/atividades/remover/{id}', [AtividadeController::class, 'remove'])->name('atividade.remove');
-Route::get('/atividades/edit/{id}', [AtividadeController::class, 'edit'])->name('atividade.edit');
-Route::put('/atividades/atualizar/{id}', [AtividadeController::class, 'update'])->name('atividade.update');
-Route::post('/atividades/criar', [AtividadeController::class, 'store'])->name('atividade.store');
+Route::get('/projects', [ProjectController::class, 'index'])->name('project.index');
+Route::get('/project/{id}', [ProjectController::class, 'show'])->name('project.show');
+Route::get('/projects/cadastrar', [ProjectController::class, 'create'])->name('project.create');
+Route::delete('/projects/remover/{id}', [ProjectController::class, 'remove'])->name('project.remove');
+Route::get('/projects/edit/{id}', [ProjectController::class, 'edit'])->name('project.edit');
+Route::put('/projects/atualizar/{id}', [ProjectController::class, 'update'])->name('project.update');
+Route::post('/projects/criar', [ProjectController::class, 'store'])->name('project.store');
 
-Route::get('/tarefas', [TarefaController::class, 'index'])->name('tarefa.index');
-Route::get('/tarefa/{id}', [TarefaController::class, 'show'])->name('tarefa.show');
-Route::get('/tarefas/cadastrar', [TarefaController::class, 'create'])->name('tarefa.create');
-Route::get('/tarefas/remover/{id}', [TarefaController::class, 'remove'])->name('tarefa.remove');
-Route::get('/tarefas/edit/{id}', [TarefaController::class, 'edit'])->name('tarefa.edit');
-Route::put('/tarefas/atualizar/{id}', [TarefaController::class, 'update'])->name('tarefa.update');
-Route::post('/tarefas/criar', [TarefaController::class, 'store'])->name('tarefa.store');
+Route::get('/issues', [IssueController::class, 'index'])->name('issue.index');
+Route::get('/issue/{id}', [IssueController::class, 'show'])->name('issue.show');
+Route::get('/issues/cadastrar/{project_id}', [IssueController::class, 'create'])->name('issue.create');
+Route::delete('/issues/remover/{id}', [IssueController::class, 'remove'])->name('issue.remove');
+Route::get('/issues/edit/{id}', [IssueController::class, 'edit'])->name('issue.edit');
+Route::put('/issues/atualizar/{id}', [IssueController::class, 'update'])->name('issue.update');
+Route::post('/issues/criar', [IssueController::class, 'store'])->name('issue.store');
 
 require __DIR__.'/auth.php';

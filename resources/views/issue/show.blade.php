@@ -13,31 +13,39 @@
   </div>
 </header>
 <div class="container mx-auto p-6 bg-white shadow-md rounded-lg my-8">
-    <h1 class="text-2xl font-bold mb-6">{{ $atividade->name }}</h1>
+    <h1 class="text-2xl font-bold mb-6">{{ $issue->title }}</h1>
 
-    <!-- Campos de Texto (somente exibição) -->
+    <div class="mb-4">
+        <label class="block text-gray-600 mb-2">Description</label>
+        <div>
+            {{$issue->description}}
+        </div>
+    </div>
+
+    <div class="mb-4">
+        <label class="block text-gray-600 mb-2">Priority</label>
+        <div>
+            {{$issue->priority}}
+        </div>
+    </div>
+
     <div class="mb-4">
         <label class="block text-gray-600 mb-2">Status</label>
         <div>
-            {{$atividade->status}}
+            {{$issue->status}}
         </div>
     </div>
 
-    <div class="mb-6">
-        <label class="block text-gray-600 mb-2">Data</label>
-        <div>
-            {{$atividade->data}}
-        </div>
-    </div>
+
 
     <!-- Botões -->
     <div class="flex space-x-4">
         <a class="w-1/2 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
-            href="{{route('atividade.index')}}">
+            href="{{route('issue.edit',  ['id' => $issue->id] )}}">
             Editar
         </a>
         <a class="w-1/2 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-300"
-            href="{{route('atividade.index')}}">
+            href="{{route('issue.remove', ['id' => $issue->id])}}">
             Excluir
         </a>
     </div>

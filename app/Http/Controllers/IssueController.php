@@ -18,8 +18,8 @@ class IssueController extends Controller
     //view
     public function show($id) {
         $issue = Issue::find($id);
-
-        return view('issue.show', compact('issue'));
+        $users = $issue->users;
+        return view('issue.show', compact('issue', 'users'));
 
     }
     //view
@@ -61,13 +61,16 @@ class IssueController extends Controller
     public function store(Request $request) {
         $project = Project::findOrFail($request['project_id']);
 
-        Issue::create([
+        $issue = Issue::create([
             'title' => $request['title'],
             'description' => $request['description'],
             'priority' => $request['priority'],
             'project_id' => $project->id,
 
         ]);
+
+        $user = Auth::user();
+        $issue->users()->attach($user);
 
         return redirect()->route('project.show', $project->id);
 

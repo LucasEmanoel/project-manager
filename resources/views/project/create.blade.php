@@ -7,13 +7,17 @@
   <div class="container mx-auto flex justify-between items-center">
     <!-- Botão Voltar -->
     <a href="{{ url()->previous() }}" class="text-white font-semibold py-2 px-4 rounded-md flex items-center">
-      <i class="fas fa-arrow-left mr-2"></i> Voltar
+      <i class="fas fa-arrow-left mr-2"></i> Back
     </a>
+      <a href="{{ route('project.index') }}" class="text-white font-semibold py-2 px-4 rounded-md flex items-center">
 
+          <h1 class="text-2xl font-bold text-white font-semibold py-2 px-4 rounded-md flex items-center">Manager
+              Projects</h1>
+      </a>
   </div>
 </header>
 <div class="container mx-auto p-6 bg-white shadow-md rounded-lg my-8">
-  <h1 class="text-2xl font-bold mb-6">Projetos</h1>
+  <h1 class="text-2xl font-bold mb-6">Project</h1>
 
   <form name="form-edit" id="form-edit" method="post" action="{{route('project.store')}}" class="space-y-6">
     @csrf
@@ -29,8 +33,8 @@
       <input type="text" id="description" name="description" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm" required>
     </div>
 
-    <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md">
-      Salvar
+    <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md">
+        <i class="fas fa-save mr-2"></i> Save
     </button>
   </form>
 </div>

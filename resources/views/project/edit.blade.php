@@ -44,5 +44,14 @@
         <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md">
             Atualizar
         </button>
+
+
+    </form>
+    <form action="{{ route('project.remove', ['id' => $project->id]) }}" method="POST" onsubmit="return confirm('Você tem certeza que deseja excluir?');">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md">
+            <i class="fas fa-trash-alt"></i> Excluir
+        </button>
     </form>
 </div>

@@ -31,9 +31,11 @@ class IssueController extends Controller
     }
 
     public function remove($id) {
+        $issue = Issue::findOrFail($id);
+
         Issue::destroy($id);
 
-        return redirect()->route('issue.index');
+        return redirect()->route('project.show', $issue->project_id);
 
     }
 
@@ -46,12 +48,13 @@ class IssueController extends Controller
 
     public function update(Request $request, $id) {
         $issue = Issue::findOrFail($id);
+
         $issue->title = $request['title'];
         $issue->description = $request['description'];
         $issue->status = $request['status'];
 
         $issue->save();
-        return redirect()->route('issue.show', $issue->id);
+        return redirect()->route('project.show', $issue->project_id);
 
     }
 
@@ -66,7 +69,7 @@ class IssueController extends Controller
 
         ]);
 
-        return redirect()->route('project.index');
+        return redirect()->route('project.show', $project->id);
 
     }
 }

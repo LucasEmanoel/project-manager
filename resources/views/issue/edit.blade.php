@@ -7,15 +7,15 @@
     <div class="container mx-auto flex justify-between items-center">
         <!-- Botão Voltar -->
         <a href="{{ url()->previous() }}" class="text-white font-semibold py-2 px-4 rounded-md flex items-center">
-            <i class="fas fa-arrow-left mr-2"></i> Voltar
+            <i class="fas fa-arrow-left mr-2"></i> Back
         </a>
 
     </div>
 </header>
 <div class="container mx-auto p-6 bg-white shadow-md rounded-lg my-8">
-    <h1 class="text-2xl font-bold mb-6">Projeto: {{ $issue->title }}</h1>
+    <h1 class="text-2xl font-bold mb-6">Issue: {{ $issue->title }}</h1>
 
-    <form name="form-edit" id="form-edit" method="post" action="{{ route('project.update', $issue->id) }}" class="space-y-6">
+    <form name="form-edit" id="form-edit" method="post" action="{{ route('issue.update', $issue->id)  }}" class="space-y-6">
         @csrf
         @method('PUT')
 
@@ -33,9 +33,9 @@
 
             <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
             <select name="status" id="status" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm"  required>
-                <option value="active" @selected($issue->status == 'active')>Active</option>
-                <option value="inactive" @selected($issue->status == 'inactive')>Inactive</option>
-                <option value="completed" @selected($issue->status == 'completed')>Completed</option>
+                <option value="open" @selected($issue->status == 'open')>Open</option>
+                <option value="closed" @selected($issue->status == 'closed')>Closed</option>
+
             </select>
         </div>
 
@@ -43,15 +43,22 @@
 
             <label for="priority" class="block text-sm font-medium text-gray-700">Priority</label>
             <select name="priority" id="priority" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm"  required>
-                <option value="active" @selected($issue->priority == 'active')>Active</option>
-                <option value="inactive" @selected($issue->priority == 'inactive')>Inactive</option>
-                <option value="completed" @selected($issue->priority == 'completed')>Completed</option>
+                <option value="high" @selected($issue->priority == 'high')>High</option>
+                <option value="normal" @selected($issue->priority == 'normal')>Normal</option>
+                <option value="low" @selected($issue->priority == 'low')>Low</option>
             </select>
         </div>
 
 
         <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md">
-            Atualizar
+            Update
+        </button>
+    </form>
+    <form action="{{ route('issue.remove', ['id' => $issue->id]) }}" method="POST" onsubmit="return confirm('Você tem certeza que deseja excluir?');">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="w-full bg-red-500 hover:bg-red-600 text-white font-semibold py-2 px-4 rounded-md">
+            <i class="fas fa-trash-alt"></i> Remove
         </button>
     </form>
 </div>

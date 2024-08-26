@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Issue;
 use App\Models\Project;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,7 +58,19 @@ class IssueController extends Controller
         return redirect()->route('project.show', $issue->project_id);
 
     }
+    public function assign(Request $request, $id)
+    {
+        $user = User::find($request['user_id']);
+        $issue = Issue::findOrFail($id);
 
+        if ( $issue->users()->where('user_id', $user->id)->exists() ) {
+            //redirect with error message if user already exist
+            return redirect()->route('issue.show', $issue->id);
+        }
+
+        $issue->users()->attach($user);
+        return redirect()->route('issue.show', $issue->id);
+    }
     public function store(Request $request) {
         $project = Project::findOrFail($request['project_id']);
 
@@ -73,6 +86,15 @@ class IssueController extends Controller
         $issue->users()->attach($user);
 
         return redirect()->route('project.show', $project->id);
+
+    }
+
+    public function user($id)
+    {
+        $issue = Issue::findOrFail($id);
+        $users = User::all();
+
+        return view('issue.user', compact('issue', 'users'));
 
     }
 }

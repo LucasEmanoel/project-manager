@@ -56,7 +56,7 @@
     <div class="container mx-auto p-6 bg-white shadow-md rounded-lg my-8">
         <div class="px-6 py-4 whitespace-nowrap text-sm flex justify-between items-center">
             <h1 class="text-2xl font-bold">Assigned Users</h1>
-            <a href="{{ route('issue.create', ['project_id' => $issue->id]) }}"
+            <a href="{{ route('issue.user', ['id' => $issue->id]) }}"
                class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-md">
                 <i class="fa-solid fa-plus mr-2"></i> Add
             </a>

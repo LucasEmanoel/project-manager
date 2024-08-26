@@ -33,7 +33,9 @@ Route::get('/issue/{id}', [IssueController::class, 'show'])->name('issue.show');
 Route::get('/issues/cadastrar/{project_id}', [IssueController::class, 'create'])->name('issue.create');
 Route::delete('/issues/remover/{id}', [IssueController::class, 'remove'])->name('issue.remove');
 Route::get('/issues/edit/{id}', [IssueController::class, 'edit'])->name('issue.edit');
+Route::get('/issues/edit/{id}/user', [IssueController::class, 'user'])->name('issue.user');
 Route::put('/issues/atualizar/{id}', [IssueController::class, 'update'])->name('issue.update');
+Route::put('/issues/assign/{id}', [IssueController::class, 'assign'])->name('issue.assign');
 Route::post('/issues/criar', [IssueController::class, 'store'])->name('issue.store');
 
 require __DIR__.'/auth.php';

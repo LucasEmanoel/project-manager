@@ -61,8 +61,12 @@
                 <thead class="bg-gray-50">
                 <tr>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        Priority
+                    </th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Issue
                     </th>
+
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Show
                     </th>
@@ -74,6 +78,13 @@
                 <tbody class="bg-white divide-y divide-gray-200">
                 @foreach($issues as $issue)
                     <tr>
+
+                        <td
+                            class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" >
+                            @if($issue->priority == 'high') <i class="fa-sharp fa-solid fa-radiation" style="color: #ff0000;"></i>
+                            @elseif($issue->priority == 'normal') <i class="fa-solid fa-bell" style="color: #FFD43B;"></i>
+                            @elseif($issue->priority == 'low') <i class="fa-solid fa-umbrella-beach" style="color: #11e815;"></i>
+                            @endif</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{{ $issue->title }}</td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-blue-600 hover:text-blue-800">
                             <a href="{{ route('issue.show', ['id' => $issue->id]) }}">
